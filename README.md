@@ -12,6 +12,6 @@ have a search bar, list of cities and different cells for when info is added
 
 ### Links and Screenshots
 Github: https://github.com/escotoj/WeatherApp 
-Deployed App: https://escotoj.github.io/CalendarApp/ 
+Deployed App: https://escotoj.github.io/WeatherApp/ 
 
 ![this is an image](hw5.png)
