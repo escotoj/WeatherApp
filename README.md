@@ -15,3 +15,7 @@ Github: https://github.com/escotoj/WeatherApp
 Deployed App: https://escotoj.github.io/WeatherApp/ 
 
 ![this is an image](hw5.png)
+
+create a 6 api request
+
+3 day projection and 5 day forecast
