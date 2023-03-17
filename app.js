@@ -4,11 +4,13 @@ var inputBox = document.querySelector("#username")
 
 var inputButton = document.querySelector("#searcBtn")
 
-var inputForm = document.querySelector("#user-form")
+var inputForm = document.querySelector("#user-form") 
 
-// var boxValue = inputBox.value.trim()
-// fix value 
-var cityName = "napa"
+var todaysForecast = document.querySelector("#todaysForecast") 
+
+
+// need to get the input value to bring up data from api, SEE BELOW
+// var cityName = inputBox.value.trim()
 
 function weatherSearch(event) {
     event.preventDefault();
@@ -16,8 +18,8 @@ function weatherSearch(event) {
 var APIKey = "0ed67e384b6b6eefec8f0b720d30c576"
 // var lat = "44.34"
 // var lon = "10.99"
-var cityAPI = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${APIKey}`
-
+var cityAPI = `https://api.openweathermap.org/data/2.5/forecast?q=${inputBox.value}&appid=${APIKey}`
+console.log("city value", inputBox.value)
 
 
     fetch(cityAPI)
@@ -26,28 +28,26 @@ var cityAPI = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&ap
         console.log(data)
         const lat = data.city.coord.lat
         const lon = data.city.coord.lon
+        
+        var valTemp = data.list[0].main.temp
+        var temp = Math.round(((valTemp-273.15)*1.8)+32)
+        var humi = data.list[0].main.humidity
+        var date = data.list[0]
+
+        todaysForecast.textContent = temp
+        todaysForecast.textContent = humi
+        // create HTML element to a vari and text content like above 
+        // in the information there is a clear day icon that i must have rendered
+
+
         var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}`
         fetch(apiUrl)
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            
+            console.log("data.list", date)    
         })
       })}
-    //     if (response.ok) {
-    //       response.json().then(function (data) {
-    //     //    console.log(response.json)
-    //     console.log(data)
-    //       });
-    //     } else {
-    //       alert('Error: ' + response.statusText);
-    //     }
-    //   })
-    //   .catch(function (error) {
-    //     alert('Unable to connect to GitHub');
-    //   });
-  
-// };
 
 
 // do a city search function for buttons
