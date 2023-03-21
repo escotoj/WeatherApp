@@ -17,7 +17,7 @@
   </header>
 
 
-  <main class="flex-row justify-space-between">
+  <main>
     <div>
 
       <div class="card">
@@ -43,10 +43,16 @@
       <h2 class="subtitle">Current Weather & 5-Day Forecast <span id="repo-search-term"></span></h2>
       <div id="repos-container" class="list-group"></div>
     </div>
-
     <div> 
         <h1 id="todaysForecast"></h1>
 
+    </div>
+    <div class="forecastCards">
+        <div class="forecast"></div>
+        <div class="forecast"></div>
+        <div class="forecast"></div>
+        <div class="forecast"></div>
+        <div class="forecast"></div>
     </div>
 
 
@@ -54,6 +60,17 @@
   </main>
 
   <script src="app.js"></script>
+  <script
+  src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+  integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+  crossorigin="anonymous"
+></script>
+
+<script src="app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+<script>
+  dayjs().format();
+</script> 
 </body>
 
 </html>

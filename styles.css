@@ -198,6 +198,8 @@
   .text-uppercase {
     text-transform: uppercase;
   }
+
+
   
   
   /* FLEX CONTENT */
@@ -501,5 +503,9 @@
     }
   } */
   
+  .forecastCards {
+    display: flex;
+    justify-content: space-evenly;
+  }
   
   
