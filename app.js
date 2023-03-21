@@ -40,7 +40,7 @@ function weatherSearch(event) {
 
       // doing a double search and want breaks in between
 
-      todaysForecast.textContent = [
+      todaysForecast.textContent = [ "Current Weather " +
         "City: " +
           name +
           "\n" +
@@ -85,14 +85,19 @@ function weatherSearch(event) {
               "Humidity: " + data.list[index].main.humidity;
             var forecastCity = document.createElement("p");
             forecastCity.innerHTML = "City: " + data.city.name;
-            var forecastDate = document.createElement("p");
-            forecastDate.innerHTML = "Date: " + dayjs().format("dddd, h:mA MM-DD-YYYY");
-
+            // var forecastDate = document.createElement("p");
+            // forecastDate.innerHTML = "Date: " + dayjs().format("dddd, h:mA MM-DD-YYYY");
+            var forecastWind = document.createElement("p");
+            forecastWind.innerHTML = "Wind Speed: " + data.list[index].wind.speed + "m/h";
+            var fiveDay = document.createElement("p");
+            fiveDay.innerHTML =
+              "5-day Forecast";
+            forecast[i].append(fiveDay);
             forecast[i].append(forecastImg);
             forecast[i].append(forecastTemp);
             forecast[i].append(forecastWind);
             forecast[i].append(forecastCity);
-            forecast[i].append(forecastDate);
+            // forecast[i].append(forecastDate);
 
           }
         });
