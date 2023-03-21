@@ -25,7 +25,7 @@ function weatherSearch(event) {
   fetch(cityAPI)
     .then((res) => res.json())
     .then((data) => {
-      //   console.log(data);
+        console.log();
       const lat = data.city.coord.lat;
       const lon = data.city.coord.lon;
 
@@ -38,9 +38,16 @@ function weatherSearch(event) {
       var cityWind = data.list[0].wind.speed;
       const currentDate = dayjs().format("dddd, h:mA MM-DD-YYYY");
 
+    //   var dayImg = document.createElement("img");
+    //         dayImg.setAttribute(
+    //           "src",
+    //           `https://openweathermap.org/img/wn/${data.list.weather[0].icon}@2x.png`
+    //         );
+    //         todaysForecast[i].append(dayImg);
       // doing a double search and want breaks in between
 
-      todaysForecast.textContent = [ "Current Weather " +
+      todaysForecast.textContent = 
+      "Current Weather: " +
         "City: " +
           name +
           "\n" +
@@ -50,10 +57,9 @@ function weatherSearch(event) {
           humi +
           "  Wind :" +
           cityWind +
-          " mile/h" +
+          " mile/hr" +
           " Date & Time: " +
-          currentDate,
-      ];
+          currentDate;
       //   var todaysImg = document.createElement("img");
       //         todaysImg.setAttribute(
       //           "src",
@@ -88,7 +94,7 @@ function weatherSearch(event) {
             // var forecastDate = document.createElement("p");
             // forecastDate.innerHTML = "Date: " + dayjs().format("dddd, h:mA MM-DD-YYYY");
             var forecastWind = document.createElement("p");
-            forecastWind.innerHTML = "Wind Speed: " + data.list[index].wind.speed + "m/h";
+            forecastWind.innerHTML = "Wind Speed: " + data.list[index].wind.speed + " miles/hr";
             var fiveDay = document.createElement("p");
             fiveDay.innerHTML =
               "5-day Forecast";
@@ -113,6 +119,8 @@ inputForm.addEventListener("submit", (e) => {
   renderSearches();
 });
 
+
+// weather search is being called twice line 110 and 126
 var searchedCities = JSON.parse(localStorage.getItem("city"));
 
 function renderSearches() {
