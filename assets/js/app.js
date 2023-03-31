@@ -36,7 +36,7 @@ function weatherSearch(event) {
       var name = data.city.name;
 
       var cityWind = data.list[0].wind.speed;
-      const currentDate = dayjs().format("dddd, h:mA MM-DD-YYYY");
+      const currentDate = dayjs().format("dddd, h:mmA MM-DD-YYYY");
 
     //   var dayImg = document.createElement("img");
     //         dayImg.setAttribute(
@@ -46,21 +46,51 @@ function weatherSearch(event) {
     //         todaysForecast[i].append(dayImg);
       // doing a double search and want breaks in between
 
-      todaysForecast.textContent = 
-      "Current Weather: " +
-        "City: " +
-          name +
-          "\n" +
-          "  Current Temp: " +
-          temp +
-          "  Humidity:" +
-          humi +
-          "  Wind :" +
-          cityWind +
-          " mile/hr" +
-          " Date & Time: " +
-          currentDate;
-        todaysForecast[0].append(todaysforecastImg);
+      // todaysForecast.textContent = 
+      // "Current Weather: " +
+      //   "City: " +
+      //     name +
+      //     "  Current Temp: " +
+      //     temp +
+      //     "  Humidity:" +
+      //     humi +
+      //     "  Wind :" +
+      //     cityWind +
+      //     " mile/hr" +
+      //     " Date & Time: " +
+      //     currentDate;
+
+      var todaysforecastImg = document.createElement("img");
+      todaysforecastImg.setAttribute(
+        "src",
+        `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`);
+      var todaysforecastTemp = document.createElement("p");
+            todaysforecastTemp.innerHTML =
+              "Temp: " + temp;
+            //   dayjs().weekday(index) + trying to add 5 day dates
+      var todaysforecastWind = document.createElement("p");
+            todaysforecastWind.innerHTML =
+              "Humidity: " + humi;
+      var todaysforecastCity = document.createElement("p");
+            todaysforecastCity.innerHTML = "City: " + name;
+            // var forecastDate = document.createElement("p");
+            // forecastDate.innerHTML = "Date: " + dayjs().format("dddd, h:mA MM-DD-YYYY");
+      var todaysforecastWind = document.createElement("p");
+            todaysforecastWind.innerHTML = "Wind Speed: " + cityWind + " miles/hr";
+      var todayDay = document.createElement("p");
+            todayDay.innerHTML =
+              "Current Forecast for " + currentDate;
+            todaysForecast.append(todayDay);
+            todaysForecast.append(todaysforecastImg);
+            todaysForecast.append(todaysforecastTemp);
+            todaysForecast.append(todaysforecastWind);
+            todaysForecast.append(todaysforecastCity);
+          
+      
+          
+
+
+      
       //   var todaysImg = document.createElement("img");
       //         todaysImg.setAttribute(
       //           "src",
@@ -75,24 +105,27 @@ function weatherSearch(event) {
         .then((res) => res.json())
         .then((data) => {
           //   console.log(data);
-          console.log("data.list", date);
+          console.log("data.list", data.list[0].dt_txt);
+        //   var weekday = require('dayjs/plugin/weekday')
+        //   dayjs.extend(weekday)
           for (var i = 0; i < forecast.length; i++) {
             forecast[i].innerHTML = "";
             var index = i * 8 + 4;
             var forecastImg = document.createElement("img");
             forecastImg.setAttribute(
               "src",
-              `https://openweathermap.org/img/wn/${data.list[index].weather[0].icon}@2x.png`
-            );
-
+              `https://openweathermap.org/img/wn/${data.list[index].weather[0].icon}@2x.png`);
+            
             var todaysforecastImg = document.createElement("img");
             todaysforecastImg.setAttribute(
               "src",
-              `https://openweathermap.org/img/wn/${data.list[index].weather[0].icon}@2x.png`
+              `https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`,
+              
             );
             var forecastTemp = document.createElement("p");
             forecastTemp.innerHTML =
               "Temp: " + Math.floor(data.list[index].main.temp) + "&#176F";
+            //   dayjs().weekday(index) + trying to add 5 day dates
             var forecastWind = document.createElement("p");
             forecastWind.innerHTML =
               "Humidity: " + data.list[index].main.humidity;
@@ -104,28 +137,25 @@ function weatherSearch(event) {
             forecastWind.innerHTML = "Wind Speed: " + data.list[index].wind.speed + " miles/hr";
             var fiveDay = document.createElement("p");
             fiveDay.innerHTML =
-              "5-day Forecast";
+              data.list[index].dt_txt;
             forecast[i].append(fiveDay);
             forecast[i].append(forecastImg);
             forecast[i].append(forecastTemp);
             forecast[i].append(forecastWind);
             forecast[i].append(forecastCity);
-            
-            // forecast[i].append(forecastDate);
-
-          }
+}
         });
     });
 }
 
 // do a city search function for buttons
-var cityArr = [];
-inputForm.addEventListener("submit", (e) => {
-  weatherSearch(e);
-  cityArr.push(inputBox.value.trim());
-  localStorage.setItem("city", JSON.stringify(cityArr));
-  renderSearches();
-});
+// var cityArr = [];
+// inputForm.addEventListener("submit", (e) => {
+//   weatherSearch(e);
+//   cityArr.push(inputBox.value.trim());
+//   localStorage.setItem("city", JSON.stringify(cityArr));
+//   renderSearches();
+// });
 
 
 // weather search is being called twice line 110 and 126
