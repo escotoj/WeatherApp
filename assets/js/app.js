@@ -1,4 +1,4 @@
-// need to grab value of input box and tie a function to the button to make the a call
+// here are the variables to select differ
 
 var inputBox = document.querySelector("#username");
 
@@ -36,7 +36,9 @@ function weatherSearch(event) {
       var name = data.city.name;
 
       var cityWind = data.list[0].wind.speed;
-      const currentDate = dayjs().format("dddd, h:mmA MM-DD-YYYY");
+      const currentDate = dayjs().format("dddd, h:mA MM-DD-YYYY")
+      // const b = currentDate.add(1, 'day')
+      // const c = b.format("dddd");
 
     //   var dayImg = document.createElement("img");
     //         dayImg.setAttribute(
@@ -159,14 +161,20 @@ function weatherSearch(event) {
 
 
 // weather search is being called twice line 110 and 126
-var searchedCities = JSON.parse(localStorage.getItem("city"));
+
 
 function renderSearches() {
-  var cityLi = document.createElement("li");
+  var cityLi = document.createElement("button");
   cityLi.innerHTML = inputBox.value.trim();
   inputForm.append(cityLi);
+  inputBox.value = '';
+  
   cityLi.addEventListener("click", function () {
     var searchValue = cityLi.innerHTML;
-    weatherSearch(searchValue);
+    var searchedCities = localStorage.getItem("city");
+    console.log(searchedCities);
+    weatherSearch(searchedCities);
+
+
   });
 }

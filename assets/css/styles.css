@@ -22,7 +22,6 @@
   }
   
   h1,
-  h2,
   h3,
   h4,
   h5,
@@ -31,6 +30,15 @@
     margin: 0;
     color: var(--dark);
     line-height: 1.25;
+  }
+
+  h2 {
+    font-weight: 700;
+    margin: 0;
+    padding-top: 5%;
+    color: rgb(0, 0, 0);
+    line-height: 1.25;
+
   }
   
   main {
