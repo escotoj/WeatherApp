@@ -1,27 +1,18 @@
-// here are the variables to select differ
-
+// here are the variables to select different elements in the DOM
 var inputBox = document.querySelector("#username");
-
 var inputButton = document.querySelector("#searcBtn");
-
 var inputForm = document.querySelector("#user-form");
-
 var todaysForecast = document.querySelector("#todaysForecast");
-
 var forecast = document.querySelectorAll(".forecast");
 
-// need to get the input value to bring up data from api, SEE BELOW
-// var cityName = inputBox.value.trim()
-
+// creating the main function in the app which has the API call, that we will later use it to call it 
 function weatherSearch(event) {
-  event.preventDefault();
-  //   console.log(inputBox.value.trim());
+  event.preventDefault(); //since we are workign with a form this is needed in order for it to not reload automaticly
   var APIKey = "0ed67e384b6b6eefec8f0b720d30c576";
-  // var lat = "44.34"
-  // var lon = "10.99"
   var cityAPI = `https://api.openweathermap.org/data/2.5/forecast?q=${inputBox.value}&appid=${APIKey}`;
   console.log("city value", inputBox.value);
 
+  // this fetch call is using arrow notation 
   fetch(cityAPI)
     .then((res) => res.json())
     .then((data) => {
@@ -34,20 +25,15 @@ function weatherSearch(event) {
       var humi = data.list[0].main.humidity;
       var date = data.list[0];
       var name = data.city.name;
-
       var cityWind = data.list[0].wind.speed;
+      // using dayjs to create the date variable with slected format
       const currentDate = dayjs().format("dddd, h:mA MM-DD-YYYY")
       // const b = currentDate.add(1, 'day')
       // const c = b.format("dddd");
 
-    //   var dayImg = document.createElement("img");
-    //         dayImg.setAttribute(
-    //           "src",
-    //           `https://openweathermap.org/img/wn/${data.list.weather[0].icon}@2x.png`
-    //         );
-    //         todaysForecast[i].append(dayImg);
-      // doing a double search and want breaks in between
 
+      // originally wanted to use this to display the DOM but the styling was ugly and could not get it to work so switch to the below option
+      // ----------------------------
       // todaysForecast.textContent = 
       // "Current Weather: " +
       //   "City: " +
@@ -61,6 +47,8 @@ function weatherSearch(event) {
       //     " mile/hr" +
       //     " Date & Time: " +
       //     currentDate;
+// -------------------------------
+// here we create an elelment and then target the DOM to append the eleent we created.
 
       var todaysforecastImg = document.createElement("img");
       todaysforecastImg.setAttribute(
@@ -75,8 +63,6 @@ function weatherSearch(event) {
               "Humidity: " + humi;
       var todaysforecastCity = document.createElement("p");
             todaysforecastCity.innerHTML = "City: " + name;
-            // var forecastDate = document.createElement("p");
-            // forecastDate.innerHTML = "Date: " + dayjs().format("dddd, h:mA MM-DD-YYYY");
       var todaysforecastWind = document.createElement("p");
             todaysforecastWind.innerHTML = "Wind Speed: " + cityWind + " miles/hr";
       var todayDay = document.createElement("p");
@@ -89,19 +75,7 @@ function weatherSearch(event) {
             todaysForecast.append(todaysforecastCity);
           
       
-          
-
-
-      
-      //   var todaysImg = document.createElement("img");
-      //         todaysImg.setAttribute(
-      //           "src",
-      //           `https://openweathermap.org/img/wn/${data.list[index].weather[0].icon}@2x.png`
-      //         );
-
-      // create HTML element to a vari and text content like above
-      // in the information there is a clear day icon that i must have rendered
-
+// API provided by weatherAPI for icons to render uses a fetch call with variabke from above like lat lot and APIKey
       var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}&units=imperial`;
       fetch(apiUrl)
         .then((res) => res.json())
@@ -110,6 +84,8 @@ function weatherSearch(event) {
           console.log("data.list", data.list[0].dt_txt);
         //   var weekday = require('dayjs/plugin/weekday')
         //   dayjs.extend(weekday)
+
+        // for-loop for the 5-day forcast - that hast element created out of thin air. 
           for (var i = 0; i < forecast.length; i++) {
             forecast[i].innerHTML = "";
             var index = i * 8 + 4;
@@ -122,7 +98,6 @@ function weatherSearch(event) {
             todaysforecastImg.setAttribute(
               "src",
               `https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`,
-              
             );
             var forecastTemp = document.createElement("p");
             forecastTemp.innerHTML =
@@ -162,6 +137,7 @@ function weatherSearch(event) {
 
 // weather search is being called twice line 110 and 126
 
+// this last function is for the search history, creating elements from thin air,  i cant seem to get the right data for when cicking on the button
 
 function renderSearches() {
   var cityLi = document.createElement("button");
@@ -171,7 +147,7 @@ function renderSearches() {
   
   cityLi.addEventListener("click", function () {
     var searchValue = cityLi.innerHTML;
-    var searchedCities = localStorage.getItem("city");
+    var searchedCities = JSON.parse(localStorage.getItem("city")); // needs JSON.parse maybe
     console.log(searchedCities);
     weatherSearch(searchedCities);
 

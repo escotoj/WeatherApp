@@ -19,6 +19,10 @@ Learned how to pull data from an API
 learned how to create fetch requests and how to have that data display dynamicly
 learned more about how to use bootstrap
 
+### Work from re-grade
+edited the styling and made the dates appear but not the days yet
+also made the buttons render but search wont happen
+
 
 
 
