@@ -148,9 +148,7 @@ function renderSearches() {
   cityLi.addEventListener("click", function () {
     var searchValue = cityLi.innerHTML;
     var searchedCities = JSON.parse(localStorage.getItem("city")); // needs JSON.parse maybe
-    console.log(searchedCities);
-    weatherSearch(searchedCities);
-
-
+    console.log("this is it", searchedCities[0]);
+    weatherSearch(searchedCities[0]);
   });
 }
