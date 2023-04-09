@@ -14,19 +14,19 @@ list of cities and different cells for when info is added
 must add a search history button that will desplay the past weatehr search
 was able to complete the assigment using elemts from prior classes like the dayjs function, and using bootstrap to style the app. 
 
-### Lessons 
+## Lessons 
 Learned how to pull data from an API
 learned how to create fetch requests and how to have that data display dynamicly
 learned more about how to use bootstrap
 
-### Work from re-grade
+## Work from re-grade
 edited the styling and made the dates appear but not the days yet
-also made the buttons render but search wont happen
+also made a search history with working buttons that render previous search 
+Organized the file structure
+still need the days to render. 
 
 
-
-
-### Links and Screenshots
+## Links and Screenshots
 Github: https://github.com/escotoj/WeatherApp 
 Deployed App: https://escotoj.github.io/WeatherApp/ 
 
