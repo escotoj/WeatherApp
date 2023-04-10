@@ -5,7 +5,8 @@ var todaysForecast = document.querySelector("#todaysForecast");
 var forecast = document.querySelectorAll(".forecast");
 var daysforFiveDayForecast = document.querySelector(".subtitle");
 
-function day() { // here is the function for the day neec to append it t fiveday var
+function day() {
+  // here is the function for the day neec to append it t fiveday var
   var day = new Date();
   var week = new Array(
     "Sunday",
@@ -20,14 +21,13 @@ function day() { // here is the function for the day neec to append it t fiveday
   for (ind = 0; ind < 6; ind++) {
     // console.log(week[(day.getDay() + 1 + i) % 7]);
     var fivedayForecastDay = document.createElement("p");
-    var dayFormula = ((week[(day.getDay() + 1 + ind)]))
-    fivedayForecastDay.innerHTML = (dayFormula)
+    var dayFormula = week[day.getDay() + 1 + ind];
+    fivedayForecastDay.innerHTML = dayFormula;
     console.log("data.list", dayFormula);
 
     // forecast.append(fivedayForecastDay)
-    
   }
-};
+}
 
 function weatherSearch(event, cityName) {
   event.preventDefault();
@@ -74,7 +74,23 @@ function weatherSearch(event, cityName) {
         .then((res) => res.json())
         .then((data) => {
           // console.log("data.list", dayFormula);
-          for (var i = 0; i < forecast.length; i++) {
+
+          var day = new Date();
+          var week = new Array(
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          );
+          for (i = 0, ind = 0; i < forecast.length && ind < 6; i++, ind++) {
+            var fivedayForecastDay = document.createElement("p");
+            var dayFormula = week[day.getDay() + 1 + ind];
+            fivedayForecastDay.innerHTML = dayFormula;
+            
+            console.log("data.list", dayFormula);
             forecast[i].innerHTML = "";
             var index = i * 8 + 4;
             var forecastImg = document.createElement("img");
@@ -98,26 +114,20 @@ function weatherSearch(event, cityName) {
             var forecastWind = document.createElement("p");
             forecastWind.innerHTML =
               "Wind Speed: " + data.list[index].wind.speed + " miles/hr";
-            
+
             // here is the var to use to append other function from below
             //   var fiveDay = document.createElement("p");
             // fiveDay.innerHTML = day();
-            // forecast[i].append(day());
-            
-            
+            forecast[i].append(fivedayForecastDay);
+
             forecast[i].append(forecastImg);
             forecast[i].append(forecastTemp);
             forecast[i].append(forecastWind);
             forecast[i].append(forecastCity);
-
-            
           }
         });
-    
     });
 }
-
-
 
 var cityArr = [];
 inputForm.addEventListener("submit", (e) => {
@@ -126,7 +136,6 @@ inputForm.addEventListener("submit", (e) => {
   cityArr.push(inputBox.value.trim());
   localStorage.setItem("city", JSON.stringify(cityArr));
   renderSearches();
-  day();
 });
 
 var searchedCities = JSON.parse(localStorage.getItem("city"));
@@ -138,13 +147,5 @@ function renderSearches() {
   cityLi.addEventListener("click", function (e) {
     var searchValue = cityLi.innerHTML;
     weatherSearch(e, searchValue);
-    
   });
 }
-
-
-
-
-
-    
-            
