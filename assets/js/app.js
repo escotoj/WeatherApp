@@ -1,3 +1,5 @@
+// here we select the elements from the dom we want to use
+
 var inputBox = document.querySelector("#username");
 var inputButton = document.querySelector("#searcBtn");
 var inputForm = document.querySelector("#user-form");
@@ -5,30 +7,7 @@ var todaysForecast = document.querySelector("#todaysForecast");
 var forecast = document.querySelectorAll(".forecast");
 var daysforFiveDayForecast = document.querySelector(".subtitle");
 
-function day() {
-  // here is the function for the day neec to append it t fiveday var
-  var day = new Date();
-  var week = new Array(
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-  );
-
-  for (ind = 0; ind < 6; ind++) {
-    // console.log(week[(day.getDay() + 1 + i) % 7]);
-    var fivedayForecastDay = document.createElement("p");
-    var dayFormula = week[day.getDay() + 1 + ind];
-    fivedayForecastDay.innerHTML = dayFormula;
-    console.log("data.list", dayFormula);
-
-    // forecast.append(fivedayForecastDay)
-  }
-}
-
+// main function of this app, handles the fetch call and has the for-loop
 function weatherSearch(event, cityName) {
   event.preventDefault();
   todaysForecast.innerHTML = "";
@@ -73,8 +52,6 @@ function weatherSearch(event, cityName) {
       fetch(apiUrl)
         .then((res) => res.json())
         .then((data) => {
-          // console.log("data.list", dayFormula);
-
           var day = new Date();
           var week = new Array(
             "Sunday",
@@ -85,11 +62,11 @@ function weatherSearch(event, cityName) {
             "Friday",
             "Saturday"
           );
+          // here is where i combined the for-loops to make one by following an online example
           for (i = 0, ind = 0; i < forecast.length && ind < 6; i++, ind++) {
             var fivedayForecastDay = document.createElement("p");
             var dayFormula = week[day.getDay() + 1 + ind];
             fivedayForecastDay.innerHTML = dayFormula;
-            
             console.log("data.list", dayFormula);
             forecast[i].innerHTML = "";
             var index = i * 8 + 4;
@@ -115,11 +92,8 @@ function weatherSearch(event, cityName) {
             forecastWind.innerHTML =
               "Wind Speed: " + data.list[index].wind.speed + " miles/hr";
 
-            // here is the var to use to append other function from below
-            //   var fiveDay = document.createElement("p");
-            // fiveDay.innerHTML = day();
+          // we append one for-loop to the other to render the forcast days
             forecast[i].append(fivedayForecastDay);
-
             forecast[i].append(forecastImg);
             forecast[i].append(forecastTemp);
             forecast[i].append(forecastWind);
@@ -139,7 +113,7 @@ inputForm.addEventListener("submit", (e) => {
 });
 
 var searchedCities = JSON.parse(localStorage.getItem("city"));
-
+// this next funtion is for the seacrh history
 function renderSearches() {
   var cityLi = document.createElement("li");
   cityLi.innerHTML = inputBox.value.trim();
