@@ -115,7 +115,7 @@ inputForm.addEventListener("submit", (e) => {
 var searchedCities = JSON.parse(localStorage.getItem("city"));
 // this next funtion is for the seacrh history
 function renderSearches() {
-  var cityLi = document.createElement("li");
+  var cityLi = document.createElement("button");
   cityLi.innerHTML = inputBox.value.trim();
   inputForm.append(cityLi);
   cityLi.addEventListener("click", function (e) {
