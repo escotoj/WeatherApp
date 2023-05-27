@@ -1,12 +1,12 @@
 :root {
-    --primary: #c4d0c5;
+    --primary: #e8f0e9;
     --secondary: #ac9cae;
     --tertiary: #837885;
     --light-dark: #b467237e;
-    --dark: #317580;
+    --dark: #03a1ba;
     --border-radius: .3rem;
   }
-  c4d0c5 ccdacd
+
   * {
     box-sizing: border-box;
   }
