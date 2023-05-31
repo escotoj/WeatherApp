@@ -8,17 +8,17 @@
 <!-- here is the CSS link or tag -->
   <link rel="stylesheet" href="assets/css/styles.css" /> 
   <title>Weather Dashboard</title>
-  <link rel="icon" type="image/x-icon" href="/assets/favicon4.ico">
+  <link rel="icon" href="images/favicon4.ico">
 </head>
 
 <body class="flex-column min-100-vh">
   <header class="hero">
     <h1 class="app-title"><i class="fab fa-github"></i> Whats the weather today!</h1>
-    <p>A simple application for weather forecasting</p>
+    <p>A simple application for weather forecasting powered by Bootstrap</p>
   </header>
 
   <main>
-    <div>
+    <div class="row">
       <div class="card">
         <h3 class="card-header text-uppercase">Search By location</h3>
         <form id="user-form" class="card-body">
@@ -36,6 +36,7 @@
         <h1 id="todaysForecast"></h1>
         <p></p>
     </div>
+   </div>
 
     <h2 class="subtitle">5-Day Forecast <span id="repo-search-term"></span></h2>
     <div class="forecastCards">

@@ -27,27 +27,28 @@ function weatherSearch(event, cityName) {
       var date = data.list[0];
       var name = data.city.name;
       var cityWind = data.list[0].wind.speed;
-      const currentDate = dayjs().format("dddd, h:mA MM-DD-YYYY");
+      const currentDate = dayjs().format("dddd, h:mmA (MM-DD-YYYY) ");
       var todaysforecastImg = document.createElement("img");
       todaysforecastImg.setAttribute(
         "src",
         `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`
       );
       var todaysforecastTemp = document.createElement("p");
-      todaysforecastTemp.innerHTML = "Temp: " + temp;
-      var todaysforecastWind = document.createElement("p");
-      todaysforecastWind.innerHTML = "Humidity: " + humi;
+      todaysforecastTemp.innerHTML = "Temp: " + temp + "°F";
+      var todaysforecastHumi = document.createElement("p");
+      todaysforecastHumi.innerHTML = "Humidity: " + humi + "%";
       var todaysforecastCity = document.createElement("p");
       todaysforecastCity.innerHTML = "City: " + name;
       var todaysforecastWind = document.createElement("p");
-      todaysforecastWind.innerHTML = "Wind Speed: " + cityWind + " miles/hr";
+      todaysforecastWind.innerHTML = "Wind: " + cityWind + " MPH";
       var todayDay = document.createElement("p");
-      todayDay.innerHTML = "Current Forecast for " + currentDate;
+      todayDay.innerHTML = "" + currentDate;
       todaysForecast.append(todayDay);
+      todaysForecast.append(todaysforecastCity);
       todaysForecast.append(todaysforecastImg);
       todaysForecast.append(todaysforecastTemp);
+      todaysForecast.append(todaysforecastHumi);
       todaysForecast.append(todaysforecastWind);
-      todaysForecast.append(todaysforecastCity);
       var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}&units=imperial`;
       fetch(apiUrl)
         .then((res) => res.json())
@@ -83,21 +84,22 @@ function weatherSearch(event, cityName) {
             var forecastTemp = document.createElement("p");
             forecastTemp.innerHTML =
               "Temp: " + Math.floor(data.list[index].main.temp) + "&#176F";
-            var forecastWind = document.createElement("p");
-            forecastWind.innerHTML =
-              "Humidity: " + data.list[index].main.humidity;
+            var forecastHumi = document.createElement("p");
+            forecastHumi.innerHTML =
+              "Humidity: " + data.list[index].main.humidity + "%";
             var forecastCity = document.createElement("p");
             forecastCity.innerHTML = "City: " + data.city.name;
             var forecastWind = document.createElement("p");
             forecastWind.innerHTML =
-              "Wind Speed: " + data.list[index].wind.speed + " miles/hr";
+              "Wind: " + data.list[index].wind.speed + " MPH";
 
           // we append one for-loop to the other to render the forcast days
             forecast[i].append(fivedayForecastDay);
             forecast[i].append(forecastImg);
-            forecast[i].append(forecastTemp);
-            forecast[i].append(forecastWind);
             forecast[i].append(forecastCity);
+            forecast[i].append(forecastTemp);
+            forecast[i].append(forecastHumi);
+            forecast[i].append(forecastWind);
           }
         });
     });
