@@ -7,6 +7,19 @@ var todaysForecast = document.querySelector("#todaysForecast");
 var forecast = document.querySelectorAll(".forecast");
 var daysforFiveDayForecast = document.querySelector(".subtitle");
 
+// JavaScript code
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById("user-form");
+  const forecastContainer = document.getElementById("forecast-container");
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    forecastContainer.style.display = "block";
+    // Additional logic to render the forecast data
+  });
+});
+
+
 // main function of this app, handles the fetch call and has the for-loop
 function weatherSearch(event, cityName) {
   event.preventDefault();
@@ -113,6 +126,7 @@ inputForm.addEventListener("submit", (e) => {
   cityArr.push(inputBox.value.trim());
   localStorage.setItem("city", JSON.stringify(cityArr));
   renderSearches();
+
 });
 
 var searchedCities = JSON.parse(localStorage.getItem("city"));
