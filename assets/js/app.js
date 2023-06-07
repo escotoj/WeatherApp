@@ -66,7 +66,8 @@ function weatherSearch(event, cityName) {
           // here is where i combined the for-loops to make one by following an online example
           for (i = 0, ind = 0; i < forecast.length && ind < 6; i++, ind++) {
             var fivedayForecastDay = document.createElement("p");
-            var dayFormula = week[day.getDay() + 1 + ind];
+            var dayIndex = (day.getDay() + ind + 1) % 7;
+            var dayFormula = week[dayIndex];
             fivedayForecastDay.innerHTML = dayFormula;
             console.log("data.list", dayFormula);
             forecast[i].innerHTML = "";

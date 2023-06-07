@@ -1,5 +1,5 @@
 # Weather Application
-The assigment is to create a weather app using API for the data
+Weeather application using thrid-party API (WeatherAPI)
 starting from scratch with no startercode, html has been created and css have been borrowed from previous code
 
 
