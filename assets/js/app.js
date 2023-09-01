@@ -1,5 +1,4 @@
 // here we select the elements from the dom we want to use
-
 var inputBox = document.querySelector("#username");
 var inputButton = document.querySelector("#searcBtn");
 var inputForm = document.querySelector("#user-form");
@@ -37,7 +36,6 @@ function weatherSearch(event, cityName) {
       var valTemp = data.list[0].main.temp;
       var temp = Math.round((valTemp - 273.15) * 1.8 + 32);
       var humi = data.list[0].main.humidity;
-      var date = data.list[0];
       var name = data.city.name;
       var cityWind = data.list[0].wind.speed;
       const currentDate = dayjs().format("dddd, h:mmA (MM-DD-YYYY) ");
@@ -130,7 +128,7 @@ inputForm.addEventListener("submit", (e) => {
 });
 
 var searchedCities = JSON.parse(localStorage.getItem("city"));
-// this next funtion is for the seacrh history
+// this next function is for the seacrh history
 function renderSearches() {
   var cityLi = document.createElement("button");
   cityLi.innerHTML = inputBox.value.trim();

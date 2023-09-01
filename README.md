@@ -2,7 +2,7 @@
 
 ## Description
 
-Weather application using thrid-party API (WeatherAPI) using Bootstrap for a responsive application. Upon entering a city, the data is then fetch thourgh the API to ultimatly render the weather data dynamicly.
+Weather application featuring a third-party API (WeatherAPI). Uses Bootstrap to achieve a polished responsive application. Upon entering a city, the data is then fetch through the API to ultimately render the dynamic weather data.
 
 [Click here to view deployed app](https://escotoj.github.io/WeatherApp/)
 
